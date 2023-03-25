@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.ebank</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>ebank-ear</artifactId>
+  <packaging>ear</packaging>
+  <name>ear assembly</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>ebank-ejb</artifactId>
+      <type>ejb</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>ebank-logging</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>ebank-primary-source</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>ebank-web</artifactId>
+      <type>war</type>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <?m2e ignore?>
+        <artifactId>maven-ear-plugin</artifactId>
+        <configuration>
+          <modules>
+            <ejbModule>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ebank-ejb</artifactId>
+              <bundleFileName>ebank-ejb.jar</bundleFileName>
+            </ejbModule>
+            <jarModule>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ebank-logging</artifactId>
+              <bundleFileName>ebank-logging.jar</bundleFileName>
+            </jarModule>
+            <jarModule>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ebank-primary-source</artifactId>
+              <bundleFileName>ebank-primary-source.jar</bundleFileName>
+            </jarModule>
+            <webModule>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>ebank-web</artifactId>
+              <bundleFileName>ebank-web.war</bundleFileName>
+              <contextRoot>/ebank-web</contextRoot>
+            </webModule>
+          </modules>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

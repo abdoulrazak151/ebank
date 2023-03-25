@@ -1,0 +1,27 @@
+version: "3.4"
+
+services:
+  db:
+    image: mysql/mysql-server:latest
+    container_name: db
+    environment:
+      MYSQL_DATABASE: ebank
+      MYSQL_ROOT_PASSWORD: s3cret
+    restart: unless-stopped
+    volumes:
+      - data:/var/lib/mysql:rw
+    ports:
+      - 3306:3306
+  server:
+    image: payara5/server
+    container_name: server
+    ports:
+      - "8282:8282"
+      - "8181:8181" # HTTPS listener
+      - "4848:4848" # HTTPS admin listener
+      - "9009:9009" # Debug port
+    depends_on:
+      - db
+
+volumes:
+  data: {}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//Payara.fish//DTD Payara Server 4 Resource Definitions//EN" "http://docs.payara.fish/schemas/payara-resources_1_6.dtd">
+<resources>
+    <jdbc-connection-pool name="MySQLPool" connection-creation-retry-interval-in-seconds="30" connection-validation-method="auto-commit" datasource-classname="com.mysql.cj.jdbc.MysqlDataSource" wrap-jdbc-objects="false" res-type="javax.sql.DataSource" is-connection-validation-required="true" connection-creation-retry-attempts="10" validate-atmost-once-period-in-seconds="60">
+        <property name="user" value="root" />
+        <property name="password" value="s3cret" />
+        <property name="url" value="jdbc:mysql://db:3306/ebank" />
+        <property name="driverClass" value="com.mysql.cj.jdbc.Driver" />
+        <property name="characterEncoding" value="utf-8" />
+    </jdbc-connection-pool>
+    <jdbc-resource enabled="true" jndi-name="jdbc/__defaut" object-type="user" pool-name="MySQLPool" />
+</resources>
